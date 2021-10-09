@@ -1,5 +1,4 @@
 ## Database (optional)
-- Run your own MSSQL instance 
 - Run docker image: 
 ```
   docker-compose -f docker/compose.yaml up -d 
