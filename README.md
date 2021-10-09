@@ -5,7 +5,7 @@
   docker-compose -f docker/compose.yaml up -d 
 ```
 ## Build and run
-###Build and run in your system:
+### Build and run in your system:
 - `path_to_dotnet build`
 - `path_to_dotnet run`
 ### Build and run with docker
