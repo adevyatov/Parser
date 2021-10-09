@@ -8,6 +8,7 @@ namespace Parser.Database.Context
         public AppContext()
         {
             Database.EnsureCreated();
+            Database.Migrate();
             Database.SetCommandTimeout(1);
         }
 
