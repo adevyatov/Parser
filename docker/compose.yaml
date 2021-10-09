@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-CU13-ubuntu-20.04
+    restart: always
+    network_mode: bridge
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: cGFzc3dvcmQK
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
