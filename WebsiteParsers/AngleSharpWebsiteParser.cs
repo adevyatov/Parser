@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AngleSharp;
 using AngleSharp.XPath;
+using Parser.Exception;
 
 namespace Parser.WebsiteParsers
 {
@@ -12,6 +13,7 @@ namespace Parser.WebsiteParsers
         public AngleSharpWebsiteParser(IConfiguration? configuration = null)
         {
             configuration ??= Configuration.Default.WithDefaultLoader();
+
             configuration.WithXPath();
 
             _context = BrowsingContext.New(configuration);
@@ -19,6 +21,13 @@ namespace Parser.WebsiteParsers
 
         public async Task<string> GetBodyContent(string url)
         {
+            var task = _context.OpenAsync(url);
+
+            if (await Task.WhenAny(task, Task.Delay(1000)) != task)
+            {
+                throw new ParseTimeoutException();
+            }
+
             var document = await _context.OpenAsync(url);
             const string xpath = ".//text()[not(ancestor::script|ancestor::style|ancestor::noscript)]";
 
