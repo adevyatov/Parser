@@ -3,9 +3,9 @@ using System;
 #nullable enable
 namespace Parser.Validators
 {
-    public class DefaultUrlValidator : IUrlValidator
+    public static class DefaultUrlValidator
     {
-        public bool isValid(string url)
+        public static bool IsValid(string url)
         {
             return Uri.IsWellFormedUriString(url, UriKind.Absolute);
         }
